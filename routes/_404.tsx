@@ -1,3 +1,4 @@
+import { DefaultHead } from "../components/DefaultHead.tsx";
 import { Header } from "../components/Header.tsx";
 
 export function ServerCodePage(
@@ -5,6 +6,7 @@ export function ServerCodePage(
 ) {
   return (
     <>
+      <DefaultHead />
       <Header />
       <section class="w-full flex items-center justify-center">
         <div class="text-center">

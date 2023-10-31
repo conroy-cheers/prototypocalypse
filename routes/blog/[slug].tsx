@@ -1,6 +1,6 @@
-import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import * as gfm from "$gfm";
+import { DefaultHead } from "../../components/DefaultHead.tsx";
 import { Container } from "../../components/Container.tsx";
 import { loadPost, Post } from "../../utils/posts.ts";
 import { Header } from "../../components/Header.tsx";
@@ -25,11 +25,12 @@ export default function PostPage(props: PageProps<Data>) {
   ol {
     list-style-type: decimal
   }
-  `
+  `;
   const { post } = props.data;
   return post
     ? (
       <>
+        <DefaultHead title={post.title} />
         <Header />
         <Container>
           <p class="font-bold text-5xl pt-20">{post.title}</p>
@@ -41,7 +42,7 @@ export default function PostPage(props: PageProps<Data>) {
             })}
           </time>
           <style dangerouslySetInnerHTML={{ __html: gfm.CSS }} />
-          <style>{ gfmExtraCSS }</style>
+          <style>{gfmExtraCSS}</style>
           <article
             class="markdown-body mt-10"
             dangerouslySetInnerHTML={{ __html: gfm.render(post.content) }}
