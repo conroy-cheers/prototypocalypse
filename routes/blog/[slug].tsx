@@ -1,3 +1,4 @@
+import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import * as gfm from "$gfm";
 import { Container } from "../../components/Container.tsx";
@@ -17,6 +18,14 @@ export const handler: Handlers<Data> = {
 };
 
 export default function PostPage(props: PageProps<Data>) {
+  const gfmExtraCSS = `
+  ul {
+    list-style-type: disc
+  }
+  ol {
+    list-style-type: decimal
+  }
+  `
   const { post } = props.data;
   return post
     ? (
@@ -32,8 +41,9 @@ export default function PostPage(props: PageProps<Data>) {
             })}
           </time>
           <style dangerouslySetInnerHTML={{ __html: gfm.CSS }} />
+          <style>{ gfmExtraCSS }</style>
           <article
-            class="mt-12 markdown-body"
+            class="markdown-body mt-10"
             dangerouslySetInnerHTML={{ __html: gfm.render(post.content) }}
           />
         </Container>
