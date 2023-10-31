@@ -497,7 +497,10 @@ and doesn't provide much warning for a lot of these:
 - This one isn't really a Chrome problem, but with all the different messages
   going in different directions, I lost track of which format should be returned
   from what function, or sent in requests/responses. I mitigated this a little
-  by
+  by using common functions to pack message objects wherever possible, but even
+  with this, had instances of incorrectly wrapping a message type in the data
+  field of a message type! This was all quite difficult to debug due to having
+  to jump between the three separate JS environments.
 
 ## In hindsight
 
